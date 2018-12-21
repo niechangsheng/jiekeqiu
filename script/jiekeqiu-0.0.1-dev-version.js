@@ -190,7 +190,7 @@ JKQ.prototype.A_M = JKQ.prototype.animation = function (data, duration) {
 
 
 //JSONP
-$.J_P = $.jsonp = function (url, data, keyword) {
+$_$.J_P = $_$.jsonp = $Q.J_P = $Q.jsonp = function (url, data, keyword) {
     const randomName = `r_${+new Date()}`;
 
     let promise = new Promise((resolve, reject) => {
