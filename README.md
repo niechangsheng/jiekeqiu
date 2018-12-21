@@ -5,8 +5,10 @@ jiekeqiu(杰客求) is an attempt to recreate jQuery thru native JS...
 (www.jiekeqiu.com is still under construction...)
 
 the original jQuery repository can be found at:
-https://github.com/jquery/jquery
-www.jQuery.com
+
+<https://github.com/jquery/jquery>
+
+<https://www.jQuery.com>
 
 ## Requirements
 
