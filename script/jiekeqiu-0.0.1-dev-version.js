@@ -1,3 +1,18 @@
+//utilities
+
+function serialize(data) {
+    let result = '';
+
+    for (let item in data) {
+        result += `${item}=${data[item]}&`
+    }
+
+    result = result.replace(/&$/, '');
+    return result;
+}
+
+//end of utilities
+
 var $_$ = $Q = function (node, scope) {
     return new JKQ(node, scope);
 };
@@ -170,3 +185,37 @@ JKQ.prototype.T_C = JKQ.prototype.toggleClass = function (classNames) {
 JKQ.prototype.A_M = JKQ.prototype.animation = function (data, duration) {
 
 }
+
+//TODO: ajax;
+
+
+//TODO: jsonp;
+$.J_P = $.jsonp = function (url, data, keyword) {
+    const randomName = `r_${+new Date()}`;
+
+    let promise = new Promise((resolve, reject) => {
+        let script = document.createElement(script);
+        let serializedData = serialize(data);
+
+        window[randomName] = function (resp) {
+            delete window[randomName];
+            script.parentNode.remove(script);
+            resolve(resp);
+        }
+
+        script.src = `${url}${serializedData}&${keyword}=${randomName}`;
+
+        document.body.appendChild(script);
+
+        script.onerror = function () {
+            delete window[randomName];
+            script.parentNode.remove(script);
+        }
+
+    })
+
+    return promise;
+} 
+
+
+//jsonp(url, data, keyword).done().catch();
