@@ -4,6 +4,10 @@ jiekeqiu(杰客求) is an attempt to recreate jQuery thru native JS...
 
 (www.jiekeqiu.com is still under construction...)
 
+## Requirements
+
+jiekeqiu requires `/modules/Utilities.js` and `/modules/PinkiePromise.js`;
+
 ## JKQ API
 
 ### `$_$` and `$Q`
