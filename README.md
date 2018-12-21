@@ -73,4 +73,3 @@ $_$.J_P('https://url', {key: value}, 'keyword')
 ```js
 
 ```
-

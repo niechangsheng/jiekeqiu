@@ -12,6 +12,8 @@ utility.serialize = function (data) {
     return result;
 }
 
+//TODO: 防抖 截流
+
 //end of utilities
 
-export {utility};
+// export default utility;
