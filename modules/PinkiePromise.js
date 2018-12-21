@@ -2,7 +2,7 @@ class PinkiePromise {
     constructor(callback) {
         this._status = 'pending';
         this._kisses = null;
-        this._punches = null;
+        this._punches = 'default error message...';
 
         this._unicorns = [];
         this._monsters = [];
