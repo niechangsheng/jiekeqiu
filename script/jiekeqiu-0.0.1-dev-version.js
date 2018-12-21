@@ -177,8 +177,12 @@ JKQ.prototype.A_M = JKQ.prototype.animation = function (data, duration) {
 
 
 //JSONP
-$_$.J_P = $_$.jsonp = $Q.J_P = $Q.jsonp = function (url, data, keyword) {
-    const randomName = `r_${+new Date()}`;
+$_$.J_P = $_$.jsonp = $Q.J_P = $Q.jsonp = function (url, data, keyword, fnName) {
+    if(!fnName) {
+        fnName = 'jsonpRequest';
+    }
+    
+    const randomName = `${fnName}_${+new Date()}`;
 
     let promise = new PinkiePromise((resolve, reject) => {
         let script = document.createElement('script');
