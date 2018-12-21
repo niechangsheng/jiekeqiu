@@ -189,17 +189,17 @@ JKQ.prototype.A_M = JKQ.prototype.animation = function (data, duration) {
 //TODO: ajax;
 
 
-//TODO: jsonp;
+//JSONP
 $.J_P = $.jsonp = function (url, data, keyword) {
     const randomName = `r_${+new Date()}`;
 
     let promise = new Promise((resolve, reject) => {
-        let script = document.createElement(script);
+        let script = document.createElement('script');
         let serializedData = serialize(data);
 
         window[randomName] = function (resp) {
             delete window[randomName];
-            script.parentNode.remove(script);
+            script.parentNode.removeChild(script);
             resolve(resp);
         }
 
@@ -209,13 +209,18 @@ $.J_P = $.jsonp = function (url, data, keyword) {
 
         script.onerror = function () {
             delete window[randomName];
-            script.parentNode.remove(script);
+            script.parentNode.removeChild(script);
+            reject(`Something went wrong...`);
         }
-
     })
 
     return promise;
 } 
 
+Promise.prototype.done = function(callback) {
+    this.then(callback, function() {
+        return this;
+    })
+}
 
 //jsonp(url, data, keyword).done().catch();
