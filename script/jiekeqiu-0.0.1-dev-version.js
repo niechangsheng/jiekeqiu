@@ -1,17 +1,4 @@
-//utilities
-
-function serialize(data) {
-    let result = '';
-
-    for (let item in data) {
-        result += `${item}=${data[item]}&`
-    }
-
-    result = result.replace(/&$/, '');
-    return result;
-}
-
-//end of utilities
+import utility from "../modules/Utilities";
 
 var $_$ = $Q = function (node, scope) {
     return new JKQ(node, scope);
@@ -195,7 +182,7 @@ $_$.J_P = $_$.jsonp = $Q.J_P = $Q.jsonp = function (url, data, keyword) {
 
     let promise = new Promise((resolve, reject) => {
         let script = document.createElement('script');
-        let serializedData = serialize(data);
+        let serializedData = utility.serialize(data);
 
         window[randomName] = function (resp) {
             delete window[randomName];
