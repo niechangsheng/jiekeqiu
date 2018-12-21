@@ -6,7 +6,7 @@ jiekeqiu(杰客求) is an attempt to recreate jQuery thru native JS...
 
 ## Requirements
 
-jiekeqiu requires `/modules/Utilities.js` and `/modules/PinkiePromise.js`;
+jiekeqiu is depended on `/modules/Utilities.js` and `/modules/PinkiePromise.js`;
 
 ## JKQ API
 
