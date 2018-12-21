@@ -6,7 +6,7 @@ jiekeqiu(杰客求) is an attempt to recreate jQuery thru native JS...
 
 ## JKQ API
 
-### $_$ and $Q
+### `$_$` and `$Q`
 
 use `$_$(selector, scope)` or `$Q(selector, scope)` to create new JKQ object;
 
@@ -14,7 +14,7 @@ use `$_$(selector, scope)` or `$Q(selector, scope)` to create new JKQ object;
  $_$('div');
 ```
 
-### $_$.jsonp() and $Q.jsonp() $_$.J_P() $Q.J_P()
+### `$_$.jsonp()` and `$Q.jsonp()` `$_$.J_P()` `$Q.J_P()`
 
 `$_$.J_P(url, data, keyword)` returns a Promise object,
 use `.then(fn(resp))` or `.done(fn(resp))` to handle the response when the promise is resolved,
@@ -26,49 +26,49 @@ $_$.J_P('https://url', {key: value}, 'keyword')
     .catch(error => {})
 ```
 
-### .T_T() and .html()
+### `.T_T()` and `.html()`
 
 ```js
 
 ```
 
-### .V_V() and .val()
+### `.V_V()` and `.val()`
 
 ```js
 
 ```
 
-### .S_S() and .css()
+### `.S_S()` and `.css()`
 
 ```js
 
 ```
 
-### .P_P() and .prop()
+### `.P_P()` and `.prop()`
 
 ```js
 
 ```
 
-### .R_R() and .attr()
+### `.R_R()` and `.attr()`
 
 ```js
 
 ```
 
-### .A_C() and .addClass()
+### `.A_C()` and `.addClass()`
 
 ```js
 
 ```
 
-### .R_C() and .removeClass()
+### `.R_C()` and `.removeClass()`
 
 ```js
 
 ```
 
-### .T_C() and .toggleClass()
+### `.T_C()` and `.toggleClass()`
 
 ```js
 
