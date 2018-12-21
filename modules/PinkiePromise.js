@@ -2,7 +2,7 @@ class PinkiePromise {
     constructor(callback) {
         this._status = 'pending';
         this._kisses = null;
-        this._farts = null;
+        this._punches = null;
 
         this._unicorns = [];
         this._monsters = [];
@@ -11,18 +11,16 @@ class PinkiePromise {
             this._status = 'fulfill';
             this._kisses = kisses;
 
-            startTasks();
+            this.startTasks();
         }
 
         const reject = farts => {
             this._status = 'reject';
-            this._farts = farts;
+            this._punches = farts;
 
-            startTasks();
+            this.startTasks();
         }
-
-
-        
+      
         callback(resolve, reject);
     }
 
@@ -33,7 +31,7 @@ class PinkiePromise {
         } else if (this._status === 'fulfill') {
             resolve(this._kisses);
         } else {
-            reject(this._farts);
+            reject(this._punches);
         }
 
         return this;
@@ -47,6 +45,7 @@ class PinkiePromise {
         } else {
             //do nothing...
         }
+
         return this;
     }
 
@@ -54,10 +53,11 @@ class PinkiePromise {
         if(this._status === 'reject') {
             this._monsters.push(callback);
         } else if(this._status === 'reject') {
-            callback(this._farts);
+            callback(this._punches);
         } else {
             //do nothing...
         }
+
         return this;
     }
 
@@ -69,10 +69,11 @@ class PinkiePromise {
             this._unicorns = [];
         } else if(this._status === 'reject') {
             for (let i = 0; i < this._monsters.length; i++) {
-                this._monsters[i](this._farts);
+                this._monsters[i](this._punches);
             }
             this._monsters = [];
         }
+        
         return this;
     }
 }
