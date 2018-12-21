@@ -180,7 +180,7 @@ JKQ.prototype.A_M = JKQ.prototype.animation = function (data, duration) {
 $_$.J_P = $_$.jsonp = $Q.J_P = $Q.jsonp = function (url, data, keyword) {
     const randomName = `r_${+new Date()}`;
 
-    let promise = new Promise((resolve, reject) => {
+    let promise = new PinkiePromise((resolve, reject) => {
         let script = document.createElement('script');
         let serializedData = utility.serialize(data);
 
@@ -204,10 +204,10 @@ $_$.J_P = $_$.jsonp = $Q.J_P = $Q.jsonp = function (url, data, keyword) {
     return promise;
 } 
 
-Promise.prototype.done = function(callback) {
-    this.then(callback, function() {
-        return this;
-    })
-}
+// Promise.prototype.done = function(callback) {
+//     this.then(callback, function() {
+//         return this;
+//     })
+// }
 
 //jsonp(url, data, keyword).done().catch();
