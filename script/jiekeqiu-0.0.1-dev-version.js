@@ -132,7 +132,6 @@ JKQ.prototype.H_C = JKQ.prototype.hasClass = function (className) {
     }
 
     return true;
-
 }
 
 JKQ.prototype.A_C = JKQ.prototype.addClass = function (className) {
