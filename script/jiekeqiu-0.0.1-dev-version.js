@@ -226,7 +226,7 @@ $_$.J_P = $_$.jsonp = $Q.J_P = $Q.jsonp = function (url, data, keyword, fnName) 
 // }
 
 //jsonp(url, data, keyword).done().catch();
-
+//AJAX
 $_$.A_X = $_$.ajax = $Q.A_X = $Q.ajax = function (info, async) {
     const method = info.type ? info.type : 'get';
     const body = utility.serialize(info.data);
@@ -263,6 +263,7 @@ $_$.A_X = $_$.ajax = $Q.A_X = $Q.ajax = function (info, async) {
     }
 }
 
+//promiseAjax
 $_$.P_X = $_$.promiseAjax = $Q.P_X = $Q.promiseAjax = function(info) {
     const promise = new PinkiePromise ((resolve, reject) => {
         info.success = resolve;
