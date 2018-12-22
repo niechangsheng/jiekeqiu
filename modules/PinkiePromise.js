@@ -14,9 +14,9 @@ class PinkiePromise {
             this.startTasks();
         }
 
-        const reject = farts => {
+        const reject = punches => {
             this._status = 'reject';
-            this._punches = farts;
+            this._punches = punches;
 
             this.startTasks();
         }
