@@ -36,6 +36,14 @@ $_$.J_P('https://url', {key: value}, 'keyword')
     .catch(error => {})
 ```
 
+### `.ajax()` and `.promiseAjax()`
+
+`.ajax() .A_X() .promiseAjax() .P_X()`
+
+```js
+
+```
+
 ### `.T_T()` and `.html()`
 
 ```js
