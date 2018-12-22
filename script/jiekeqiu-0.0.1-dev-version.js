@@ -120,6 +120,21 @@ JKQ.prototype.R_R = JKQ.prototype.attr = function (attr, value) {
     }
 }
 
+JKQ.prototype.H_C = JKQ.prototype.hasClass = function (className) {
+    const regex = new RegExp(`\\b${className}\\b`);
+
+    for (let i = 0; i < this.length; i++) {
+        if (regex.test(this[i].className)) {
+            continue;
+        } else {
+            return false;
+        }
+    }
+
+    return true;
+
+}
+
 JKQ.prototype.A_C = JKQ.prototype.addClass = function (className) {
     const regex = new RegExp(`\\b${className}\\b`);
 
