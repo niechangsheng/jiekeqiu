@@ -173,9 +173,6 @@ JKQ.prototype.A_M = JKQ.prototype.animation = function (data, duration) {
 
 }
 
-//TODO: ajax;
-
-
 //JSONP
 $_$.J_P = $_$.jsonp = $Q.J_P = $Q.jsonp = function (url, data, keyword, fnName) {
     if(!fnName) {
@@ -215,3 +212,41 @@ $_$.J_P = $_$.jsonp = $Q.J_P = $Q.jsonp = function (url, data, keyword, fnName) 
 // }
 
 //jsonp(url, data, keyword).done().catch();
+
+//TODO: ajax;
+$_$.A_X = $_$.ajax = $Q.A_X = $Q.ajax = function (info, async) {
+    const method = info.type ? info.type : 'get';
+    const body = utility.serialize(info.data);
+    const url = info.url;
+    const isAsync = async ? async : true;
+
+
+    const xhr = new XMLHttpRequest();
+
+    if(method === 'get') {
+        xhr.open(method, `${url}${body}`, isAsync);
+
+    } else if(method === 'post') {
+        xhr.open(method, url, isAsync);
+    }
+    xhr.onreadystatechange = function () {
+        if(this.readyState !== 4) {
+            return;
+        }
+        if(this.status >= 200 && this.status < 300) {
+            const resp = JSON.parse(this.responseText);
+
+            info.success(resp);
+        } else {
+            info.error(xhr);
+        }
+
+    }
+    if(method === 'get') {
+        xhr.send(null);
+    } else if(method === 'post') {
+        xhr.setRequestHeader('context-type', 'application/x-www-form-urlencoded');
+        xhr.send(body);
+    }
+
+}
