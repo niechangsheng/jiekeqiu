@@ -1,6 +1,7 @@
 testpage.html
 index.html
 /vendor
+/excluded_files
 *.log
 *.temp
 .DS_Store

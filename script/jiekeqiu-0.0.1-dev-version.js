@@ -181,7 +181,7 @@ $_$.J_P = $_$.jsonp = $Q.J_P = $Q.jsonp = function (url, data, keyword, fnName) 
     
     const randomName = `${fnName}_${+new Date()}`;
 
-    let promise = new PinkiePromise((resolve, reject) => {
+    const promise = new PinkiePromise((resolve, reject) => {
         let script = document.createElement('script');
         let serializedData = utility.serialize(data);
 
@@ -213,13 +213,11 @@ $_$.J_P = $_$.jsonp = $Q.J_P = $Q.jsonp = function (url, data, keyword, fnName) 
 
 //jsonp(url, data, keyword).done().catch();
 
-//TODO: ajax;
 $_$.A_X = $_$.ajax = $Q.A_X = $Q.ajax = function (info, async) {
     const method = info.type ? info.type : 'get';
     const body = utility.serialize(info.data);
     const url = info.url;
     const isAsync = async ? async : true;
-
 
     const xhr = new XMLHttpRequest();
 
@@ -229,6 +227,7 @@ $_$.A_X = $_$.ajax = $Q.A_X = $Q.ajax = function (info, async) {
     } else if(method === 'post') {
         xhr.open(method, url, isAsync);
     }
+
     xhr.onreadystatechange = function () {
         if(this.readyState !== 4) {
             return;
@@ -240,13 +239,23 @@ $_$.A_X = $_$.ajax = $Q.A_X = $Q.ajax = function (info, async) {
         } else {
             info.error(xhr);
         }
-
     }
+
     if(method === 'get') {
         xhr.send(null);
     } else if(method === 'post') {
         xhr.setRequestHeader('context-type', 'application/x-www-form-urlencoded');
         xhr.send(body);
     }
+}
 
+$_$.P_X = $_$.promiseAjax = $Q.P_X = $Q.promiseAjax = function(info) {
+    const promise = new PinkiePromise ((resolve, reject) => {
+        info.success = resolve;
+        info.error = reject;
+
+        this.ajax(info)
+    })
+    
+    return promise
 }
