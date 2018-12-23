@@ -5,3 +5,5 @@ index.html
 *.log
 *.temp
 .DS_Store
+.TODO.md
+
