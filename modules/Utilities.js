@@ -12,8 +12,34 @@ utility.serialize = function (data) {
     return result;
 }
 
-//TODO: 防抖 截流
+utility.throttle = (callback, duration) => {
+    let flag = true;
+    let id = null;
 
+    return () => {
+        if(flag) {
+            flag = false;
+
+            callback();
+            clearTimeout(id);
+            id = setTimeout(() => {
+                flag = true;
+            }, duration);
+        }  
+    }
+    
+}
+
+utility.debounce = (callback, duration) => {
+    let id = null;
+    
+    return () => {
+        clearTimeout(id);
+        id = setTimeout(() => {
+            callback();
+        }, duration);
+    }
+}
+
+//TODO: debounce + throttle;
 //end of utilities
-
-// export default utility;
