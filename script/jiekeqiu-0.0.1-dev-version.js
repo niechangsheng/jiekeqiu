@@ -274,3 +274,10 @@ $_$.P_X = $_$.promiseAjax = $Q.P_X = $Q.promiseAjax = function(info) {
     
     return promise
 }
+
+//extend
+$_$.extend = $Q.extend = function(obj) {
+    for(let fn in obj) {
+        $_$.prototype[fn] = $Q.prototype[fn] = obj[fn];
+    }
+}
