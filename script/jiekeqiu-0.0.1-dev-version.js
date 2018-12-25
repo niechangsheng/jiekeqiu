@@ -43,6 +43,10 @@ JKQ.prototype.catchItem = function(node, scope) {
     }
 }
 
+JKQ.prototype.E_Q = JKQ.prototype.eq = function(index) {
+    return $_$(this[index]);
+}
+
 JKQ.prototype.A_A = JKQ.prototype.add = function (node, scope) {
 
     this.catchItem(node, scope);
@@ -107,6 +111,13 @@ JKQ.prototype.P_P = JKQ.prototype.prop = function (prop, value) {
         }
         return this;
     }
+}
+
+JKQ.prototype.R_P = JKQ.prototype.removeProp = function(prop) {
+    if(this[prop] !== undefined) {
+        delete this[prop];
+    }
+    return this;
 }
 
 JKQ.prototype.R_R = JKQ.prototype.attr = function (attr, value) {
@@ -185,7 +196,7 @@ JKQ.prototype.T_C = JKQ.prototype.toggleClass = function (classNames) {
 //TODO: animation;
 JKQ.prototype.A_M = JKQ.prototype.animation = function (data, duration) {
 
-}
+}         
 
 //JSONP
 $_$.J_P = $_$.jsonp = $Q.J_P = $Q.jsonp = function (url, data, keyword, fnName) {
@@ -278,6 +289,6 @@ $_$.P_X = $_$.promiseAjax = $Q.P_X = $Q.promiseAjax = function(info) {
 //extend
 $_$.extend = $Q.extend = function(obj) {
     for(let fn in obj) {
-        $_$.prototype[fn] = $Q.prototype[fn] = obj[fn];
+        JKQ.prototype[fn] = obj[fn];
     }
 }

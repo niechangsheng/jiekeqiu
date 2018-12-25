@@ -50,7 +50,7 @@ class PinkiePromise {
     }
 
     catch(callback) {
-        if(this._status === 'reject') {
+        if(this._status === 'pending') {
             this._monsters.push(callback);
         } else if(this._status === 'reject') {
             callback(this._punches);
