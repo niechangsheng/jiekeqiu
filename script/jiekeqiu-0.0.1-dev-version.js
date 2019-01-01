@@ -269,7 +269,7 @@ $_$.A_X = $_$.ajax = $Q.A_X = $Q.ajax = function (info, async) {
     if(method === 'get') {
         xhr.send(null);
     } else if(method === 'post') {
-        xhr.setRequestHeader('context-type', 'application/x-www-form-urlencoded');
+        xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
         xhr.send(body);
     }
 }
