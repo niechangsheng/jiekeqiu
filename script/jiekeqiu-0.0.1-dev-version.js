@@ -10,6 +10,7 @@ function JKQ(node, scope) {
     this.length = 0;
     this._toggleClassCurrent = 0;
     this._animationQueue = [];
+    this._events = [];
 
     this.init(node, scope);
 }
@@ -132,7 +133,7 @@ JKQ.prototype.R_R = JKQ.prototype.attr = function (attr, value) {
 }
 
 JKQ.prototype.H_C = JKQ.prototype.hasClass = function (className) {
-    const regex = new RegExp(`\\b${className}\\b`);
+    const regex = new RegExp(`\\b${className}\\b`,`g`);
 
     for (let i = 0; i < this.length; i++) {
         if (regex.test(this[i].className)) {
@@ -160,7 +161,7 @@ JKQ.prototype.A_C = JKQ.prototype.addClass = function (className) {
 }
 
 JKQ.prototype.R_C = JKQ.prototype.removeClass = function (className) {
-    const regex = new RegExp(`\\b${className}\\b`);
+    const regex = new RegExp(`\\b${className}\\b`, 'g');
 
     for(let i=0; i<this.length; i++) {
         if(regex.test(this[i].className)) {
@@ -189,8 +190,58 @@ JKQ.prototype.T_C = JKQ.prototype.toggleClass = function (classNames) {
     this.removeClass(classNames[prevIndex]);
     this.addClass(classNames[index]);
 
-    this._toggleClassCurrent++
+    this._toggleClassCurrent++;
     return self;
+}
+
+//TODO: event on off
+//TODO: one()
+// JKQ.prototype.O_N = JKQ.prototype.on = function (evtName, callback) {
+//     const self = this;
+//     this._events.push[callback];
+
+//     for(let i=0; i<this.length; i++) {
+//         this[i][`on${evtName}`] = function() {
+//             for(let j=0; j<self._events.length; j++) {
+//                 self._events[j]();
+//             }
+//         }
+//     }
+
+//     return this;
+// }
+    // const regex = /^function/;
+    // let callbackName = null;
+
+    // if(regex.test()) {
+    //     callbackName = callback.toString().replace(/^function|\([\d\D]*|\s/g, '');
+    //     if(!callbackName) {
+    //         callbackName = `${evtName}_${+new Date()}`;
+    //     }
+    // }
+
+    // // this._events[evtName][callbackName] = callback;
+
+    // for(let i=0; i<this.length; i++) {
+    //     this[i].addEventListener('evtName', callback);
+    // }
+    
+// }
+
+JKQ.prototype.O_F = JKQ.prototype.off = function (evtName, callbackName) {
+    if(callbackName) {
+        for(let i=0; i<this.length; i++) {
+            this[i].removeEventListener('evtName', this._events[evtName][callbackName]);
+            delete this._events[evtName][callbackName];
+        }
+    } else {
+        for(let i=0; i<this.length; i++) {
+            for(let cb in this._events[evtName]) {
+                this[i].removeEventListener('evtName', this._events[evtName][cb]);
+            }
+        }
+        delete this._events[evtName];
+    }
 }
 
 //TODO: animation;
@@ -258,7 +309,7 @@ $_$.A_X = $_$.ajax = $Q.A_X = $Q.ajax = function (info, async) {
             return;
         }
         if(this.status >= 200 && this.status < 300) {
-            const resp = JSON.parse(this.responseText);
+            const resp = this.responseText;
 
             info.success(resp);
         } else {
